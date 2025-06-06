@@ -4,6 +4,7 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import bgImage from './assets/background-temp.jpg';
 import Metrics from './Metrics.jsx'
+import TempCard from './TempCard.jsx'
 
 
 function App() {
@@ -43,6 +44,7 @@ function App() {
                 Daily weather measurements of the surface of Mars at Elysium Planitia <br></br>near Martian equator by InSight lander
             </p>
             <Metrics/>
+            <TempCard/>
             </div >
         </>  
     )
