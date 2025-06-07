@@ -9,7 +9,7 @@ function TempCard(props){
 
 
     return (
-        <div className="card">
+        <div className="card" onClick={props.onClick}>
             <span><b>Sol {props.sent.sol}</b></span>
             <span>{mmdd}</span>
             <hr style={{
@@ -18,8 +18,8 @@ function TempCard(props){
                height: "2px",
                background: "white"
             }}/>
-            High: {props.sent.AT.mx.toFixed(2)}° F<br/>
-            Low: {props.sent.AT.mn.toFixed(2)}° F
+            High: {props.sent.AT.mx.toFixed(2)}° C<br/>
+            Low: {props.sent.AT.mn.toFixed(2)}° C
         </div>
     )
 }

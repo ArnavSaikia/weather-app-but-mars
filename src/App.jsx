@@ -39,6 +39,18 @@ function App() {
 
     console.log(data);
 
+    function changeToCurrentCard(index){
+        let copy = [...solsData];
+        [copy[index] , copy[6]] = [copy[6] , copy[index]];
+        let copysCopy = copy.filter((value,index) => index!=6?value:false);
+        copysCopy = copysCopy.sort();
+        copy = [...copysCopy,copy[6]];
+        copysCopy = copysCopy.sort((a, b) => Number(a.sol) - Number(b.sol));
+        copy = [...copysCopy, copy[6]];
+        setSolsData(copy);
+    }
+
+
     // useEffect(() => {
     //     sols_data = data.sol_keys.map(sol => {
     //         return{
@@ -65,12 +77,12 @@ function App() {
             </p>
             <Metrics sent={solsData[6]}/>
             <div className='card-container'>
-                <TempCard sent={solsData[0]}/>
-                <TempCard sent={solsData[1]}/>
-                <TempCard sent={solsData[2]}/>
-                <TempCard sent={solsData[3]}/>
-                <TempCard sent={solsData[4]}/>
-                <TempCard sent={solsData[5]}/>
+                <TempCard sent={solsData[0]} onClick={() => changeToCurrentCard(0)}/>
+                <TempCard sent={solsData[1]} onClick={() => changeToCurrentCard(1)}/>
+                <TempCard sent={solsData[2]} onClick={() => changeToCurrentCard(2)}/>
+                <TempCard sent={solsData[3]} onClick={() => changeToCurrentCard(3)}/>
+                <TempCard sent={solsData[4]} onClick={() => changeToCurrentCard(4)}/>
+                <TempCard sent={solsData[5]} onClick={() => changeToCurrentCard(5)}/>
             </div>
             
             </div >

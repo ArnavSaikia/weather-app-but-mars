@@ -15,8 +15,8 @@ function Metrics(props){
                 <span>{mmdd}</span>
             </div>
             <div className="hi-lo-temp">
-                <span>High: {props.sent.AT.mx.toFixed(2)}° F| C</span><br/>
-                <span>Low: {props.sent.AT.mn.toFixed(2)}° F| C</span>
+                <span>High: {props.sent.AT.mx.toFixed(2)}° C| {farenheitCelsiusConvert(props.sent.AT.mx,'C').toFixed(2)}° F</span><br/>
+                <span>Low: {props.sent.AT.mn.toFixed(2)}° C| {farenheitCelsiusConvert(props.sent.AT.mn,'C').toFixed(2)}° F</span>
             </div>
         </div>
     )
