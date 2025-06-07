@@ -1,4 +1,5 @@
 .card{
+    /* flex: 0 0; */
     font-size: 1.2rem;
     display: flex;
     flex-direction: column;
@@ -10,4 +11,15 @@
     background-color: rgba(0, 0, 0, 0.449);
     backdrop-filter: blur(3px);
     border-radius: 8px;
+    border-top: 1px solid rgba(0, 0, 0, 0.616);
+    border-left: 1px solid rgba(0, 0, 0, 0.522);
+    transition: 0.3s ease;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.089);
+}
+
+.card:hover{
+    transform: scale(1.1); /* enlarges smoothly */
+    background-color: rgba(0, 0, 0, 0.584);
+    z-index: 10;
+    cursor: pointer;
 }

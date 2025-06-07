@@ -1,4 +1,5 @@
-import './Metrics.css'
+import './Metrics.css';
+import farenheitCelsiusConvert from './Utils.jsx';
 
 function Metrics(props){
     const date = new Date(props.sent.First_UTC);

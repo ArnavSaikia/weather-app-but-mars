@@ -29,5 +29,7 @@
   margin-top: 55px;
   display: flex;
   width: 100%;
-  justify-content: space-between;
+  /* justify-content: space-between; */
+  gap: 40px;
+  transition: gap 0.3s ease;
 }
