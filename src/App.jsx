@@ -44,7 +44,16 @@ function App() {
                 Daily weather measurements of the surface of Mars at Elysium Planitia <br></br>near Martian equator by InSight lander
             </p>
             <Metrics/>
-            <TempCard/>
+            <div className='card-container'>
+                <TempCard/>
+                <TempCard/>
+                <TempCard/>
+                <TempCard/>
+                <TempCard/>
+                <TempCard/>
+                <TempCard/>
+            </div>
+            
             </div >
         </>  
     )
