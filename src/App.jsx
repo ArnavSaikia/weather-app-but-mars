@@ -21,19 +21,38 @@ function App() {
     };
 
 
+    const [data, setData] = useState(null);
+    const [solsData, setSolsData] = useState([]);
+    useEffect(() => {
+        fetch("https://api.nasa.gov/insight_weather/?api_key=KLaoBR5qU1BWec3jwGG9RdKK8qJwjqQfJogjl1rE&feedtype=json&ver=1.0")
+            .then((returned) => returned.json())
+            .then((json) => {
+            setData(json);
+            const solDataArray = json.sol_keys.map(sol => ({
+                sol: sol,
+                ...json[sol]
+            }));
+            setSolsData(solDataArray);
+            })
+            .catch(err => console.log(err));
+        }, []);
 
+    console.log(data);
 
-    // const [data, setData] = useState(null);
     // useEffect(() => {
-    //     fetch("https://api.nasa.gov/insight_weather/?api_key=DEMO_KEY&feedtype=json&ver=1.0")
-    //     .then((returned) => returned.json())
-    //     .then(json => {
-    //         setData(json);
-    //     })
-    //     .catch(err => console.log(err));
-    // }, []);
+    //     sols_data = data.sol_keys.map(sol => {
+    //         return{
+    //             sol: sol,
+    //             ...data[sol]
+    //         }
+    //     });
+    // },[data]);
 
-    // console.log(data);
+    if(!data) return(
+        <h1>WORKING ON IT</h1>
+    );
+
+
 
     return(
         <>
@@ -44,15 +63,14 @@ function App() {
             <p className="description-text">
                 Daily weather measurements of the surface of Mars at Elysium Planitia <br></br>near Martian equator by InSight lander
             </p>
-            <Metrics/>
+            <Metrics sent={solsData[6]}/>
             <div className='card-container'>
-                <TempCard/>
-                <TempCard/>
-                <TempCard/>
-                <TempCard/>
-                <TempCard/>
-                <TempCard/>
-                <TempCard/>
+                <TempCard sent={solsData[0]}/>
+                <TempCard sent={solsData[1]}/>
+                <TempCard sent={solsData[2]}/>
+                <TempCard sent={solsData[3]}/>
+                <TempCard sent={solsData[4]}/>
+                <TempCard sent={solsData[5]}/>
             </div>
             
             </div >
