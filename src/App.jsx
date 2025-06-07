@@ -16,7 +16,8 @@ function App() {
         backgroundRepeat: "no-repeat",
         display: "flexbox",
         padding: "20px",
-        paddingLeft: "50px"
+        paddingLeft: "50px",
+        boxSizing: "border-box"
     };
 
 
