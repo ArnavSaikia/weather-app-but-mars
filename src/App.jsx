@@ -60,7 +60,7 @@ function App() {
     );
 
     if(!name) return(
-        <Login/>
+        <Login setter={setName}/>
     )
 
     return(

@@ -1,7 +1,7 @@
 import bgImage from './assets/background-temp.jpg';
 import './Login.css';
 
-function Login(){
+function Login(props){
     const styles = {
         backgroundImage: `url(${bgImage})`,
         width: "100vw",
@@ -17,13 +17,17 @@ function Login(){
     };
 
     function enterName(e){
-        setName(e.target.value);
+        props.setter(e.target.value);
     }
 
     return(
         <div style={styles} className="cover-box">
             <h2>Please Enter Your Name</h2>
-            <input className="name-input" type="text"></input>
+            <input className="name-input" type="text" onKeyDown={(e) => {
+                if (e.key == 'Enter'){
+                    enterName(e);
+                }
+            }}></input>
         </div>
     )
 }
