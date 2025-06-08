@@ -5,6 +5,7 @@ import './App.css'
 import bgImage from './assets/background-temp.jpg';
 import Metrics from './Metrics.jsx'
 import TempCard from './TempCard.jsx'
+import Login from './Login.jsx'
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
     const [data, setData] = useState(null);
     const [solsData, setSolsData] = useState([]);
     const [name, setName] = useState(null);
+
     useEffect(() => {
         fetch("https://api.nasa.gov/insight_weather/?api_key=KLaoBR5qU1BWec3jwGG9RdKK8qJwjqQfJogjl1rE&feedtype=json&ver=1.0")
             .then((returned) => returned.json())
@@ -56,6 +58,10 @@ function App() {
     if(!data) return(
         <h1>WORKING ON IT</h1>
     );
+
+    if(!name) return(
+        <Login/>
+    )
 
     return(
         <>

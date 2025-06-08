@@ -16,10 +16,14 @@ function Login(){
         alignItems: "center"
     };
 
+    function enterName(e){
+        setName(e.target.value);
+    }
+
     return(
         <div style={styles} className="cover-box">
             <h2>Please Enter Your Name</h2>
-            <input type="text"></input>
+            <input className="name-input" type="text"></input>
         </div>
     )
 }
