@@ -8,7 +8,8 @@ function Login(props){
         height: "100vh",
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
-        display: "flexbox",
+        display: "flex",
+        flexDirection: "column",
         padding: "20px",
         paddingLeft: "50px",
         boxSizing: "border-box",
@@ -22,7 +23,7 @@ function Login(props){
 
     return(
         <div style={styles} className="cover-box">
-            <h2>Please Enter Your Name</h2>
+            <h1>Please Enter Your Name</h1>
             <input className="name-input" type="text" onKeyDown={(e) => {
                 if (e.key == 'Enter'){
                     enterName(e);

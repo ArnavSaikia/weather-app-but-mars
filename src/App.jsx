@@ -67,7 +67,8 @@ function App() {
         <>
             <div style={styles} className="text-box">
             <p className='title-insight'>
-                Latest Weather<br></br>at Elysium Planitia
+                {/* Latest Weather<br></br>at Elysium Planitia */}
+                Good Morning {name}
             </p>
             <p className="description-text">
                 Daily weather measurements of the surface of Mars at Elysium Planitia <br></br>near Martian equator by InSight lander
