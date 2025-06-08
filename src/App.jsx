@@ -23,6 +23,7 @@ function App() {
 
     const [data, setData] = useState(null);
     const [solsData, setSolsData] = useState([]);
+    const [name, setName] = useState(null);
     useEffect(() => {
         fetch("https://api.nasa.gov/insight_weather/?api_key=KLaoBR5qU1BWec3jwGG9RdKK8qJwjqQfJogjl1rE&feedtype=json&ver=1.0")
             .then((returned) => returned.json())
@@ -51,20 +52,10 @@ function App() {
     }
 
 
-    // useEffect(() => {
-    //     sols_data = data.sol_keys.map(sol => {
-    //         return{
-    //             sol: sol,
-    //             ...data[sol]
-    //         }
-    //     });
-    // },[data]);
 
     if(!data) return(
         <h1>WORKING ON IT</h1>
     );
-
-
 
     return(
         <>
