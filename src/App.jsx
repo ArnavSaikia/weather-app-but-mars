@@ -9,23 +9,25 @@ import Login from './Login.jsx'
 
 
 function App() {
-    const styles = {
-        backgroundImage: `url(${bgImage})`,
-        width: "100vw",
-        height: "100vh",
-        backgroundSize: "cover",
-        backgroundRepeat: "no-repeat",
-        display: "flexbox",
-        padding: "20px",
-        paddingLeft: "50px",
-        boxSizing: "border-box"
-    };
+    // const styles = {
+    //     backgroundImage: `url(${bgImage})`,
+    //     width: "100vw",
+    //     height: "100vh",
+    //     backgroundSize: "cover",
+    //     backgroundRepeat: "no-repeat",
+    //     display: "flexbox",
+    //     padding: "20px",
+    //     paddingLeft: "50px",
+    //     boxSizing: "border-box"
+    // };
 
 
     const [data, setData] = useState(null);
     const [solsData, setSolsData] = useState([]);
     const [name, setName] = useState(null);
     const [timeOfDay, setTimeOfDay] = useState(null);
+    const [backgroundImages, setBackgroundImages] = useState([]);
+    const [currentIndex, setCurrentIndex] = useState(0);
 
     function getTimeOfDay(date = new Date()) {
         const hours = date.getHours();
@@ -58,6 +60,51 @@ function App() {
         }, []);
 
     console.log(data);
+
+    useEffect(() => {
+        const fetchImages = async () => {
+        try {
+            const res = await fetch(
+            "https://images-api.nasa.gov/search?q=mars+surface&media_type=image"
+            );
+            const json = await res.json();
+            const items = json.collection.items;
+            const urls = items
+            .map(item => item.links?.[0]?.href)
+            .filter(Boolean);
+            setBackgroundImages(urls);
+        } catch (err) {
+            console.error("Error fetching background images:", err);
+        }
+        };
+        fetchImages();
+    }, []);
+
+    useEffect(() => {
+        if (backgroundImages.length === 0) return;
+        const intervalId = setInterval(() => {
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % backgroundImages.length);
+        }, 1 * 60 * 1000); // 10 minutes
+        return () => clearInterval(intervalId);
+    }, [backgroundImages]);
+
+    const backgroundImageUrl = backgroundImages.length
+    ? backgroundImages[currentIndex]
+    : './assets/background-temp.jpg'; 
+
+    const styles = {
+        backgroundImage: `url(${backgroundImageUrl})`,
+        width: "100vw",
+        height: "100vh",
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center",
+        display: "flexbox",
+        padding: "20px",
+        paddingLeft: "50px",
+        boxSizing: "border-box",
+        transition: "background-image 1s ease-in-out", // smooth fade
+    };
 
     function changeToCurrentCard(index){
         let copy = [...solsData];
