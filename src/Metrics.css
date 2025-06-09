@@ -1,8 +1,20 @@
+@keyframes slideIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
 .today-weather-info{
     display: flex;
     margin-left: 50px;
     font-size: 2rem;
     font-weight: 350;
+    animation: slideIn 0.8s ease forwards;
 }
 
 .sol-box{

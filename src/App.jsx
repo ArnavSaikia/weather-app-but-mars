@@ -62,23 +62,20 @@ function App() {
     console.log(data);
 
     useEffect(() => {
-        const fetchImages = async () => {
-        try {
-            const res = await fetch(
-            "https://images-api.nasa.gov/search?q=mars+surface&media_type=image"
+        const fetchPhotos = async () => {
+            try {
+            const response = await fetch(
+                `https://api.unsplash.com/search/photos?query=${getTimeOfDay()}+sky%20landscape&orientation=landscape&client_id=RCI4GVM3KbA0mnRQIurBFQnthH8mRjzvk8PF_ifzcDw`
             );
-            const json = await res.json();
-            const items = json.collection.items;
-            const urls = items
-            .map(item => item.links?.[0]?.href)
-            .filter(Boolean);
-            setBackgroundImages(urls);
-        } catch (err) {
-            console.error("Error fetching background images:", err);
-        }
+            const data = await response.json();
+            const imageUrls = data.results.map(item => item.urls.full);
+            setBackgroundImages(imageUrls);
+            } catch (error) {
+            console.error("Error fetching Unsplash images:", error);
+            }
         };
-        fetchImages();
-    }, []);
+        fetchPhotos();
+        }, []);
 
     useEffect(() => {
         if (backgroundImages.length === 0) return;
