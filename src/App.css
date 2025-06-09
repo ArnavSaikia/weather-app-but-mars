@@ -16,6 +16,17 @@
   }
 }
 
+body {
+  font-family: 'Manrope', sans-serif;
+
+}
+
+
+.text-box p, .title-insight, .description-text {
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+}
+
+
 .text-box {
   animation: dropIn 0.8s ease forwards;
 }
