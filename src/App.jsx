@@ -25,6 +25,23 @@ function App() {
     const [data, setData] = useState(null);
     const [solsData, setSolsData] = useState([]);
     const [name, setName] = useState(null);
+    const [timeOfDay, setTimeOfDay] = useState(null);
+
+    function getTimeOfDay(date = new Date()) {
+        const hours = date.getHours();
+        
+        if (hours >= 5 && hours < 12) {
+            return 'Morning';
+        } else if (hours >= 12 && hours < 17) {
+            return 'Afternoon';
+        } else if (hours >= 17 && hours < 21) {
+            return 'Evening';
+        } else {
+            return 'Night';
+        }
+    }
+
+    useEffect(() => setTimeOfDay(getTimeOfDay()));
 
     useEffect(() => {
         fetch("https://api.nasa.gov/insight_weather/?api_key=KLaoBR5qU1BWec3jwGG9RdKK8qJwjqQfJogjl1rE&feedtype=json&ver=1.0")
@@ -68,10 +85,12 @@ function App() {
             <div style={styles} className="text-box">
             <p className='title-insight'>
                 {/* Latest Weather<br></br>at Elysium Planitia */}
-                Good Morning {name}
+                Good {timeOfDay} {name}
             </p>
             <p className="description-text">
-                Daily weather measurements of the surface of Mars at Elysium Planitia <br></br>near Martian equator by InSight lander
+                InSight is taking daily weather measurements (temperature, <br/>
+                wind, pressure) on the surface of Mars at Elysium Panitia, a flat, <br/>
+                smooth plan near Mars' equator.
             </p>
             <Metrics sent={solsData[6]}/>
             <div className='card-container'>
