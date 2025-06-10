@@ -1,12 +1,13 @@
 import bgImage from './assets/background-temp.jpg';
+import bgImage2 from './assets/bgimg2.jpg';
 import './Login.css';
 
 function Login(props){
     const styles = {
-        backgroundImage: `url(${bgImage})`,
+        backgroundImage: `url(${bgImage2})`,
         width: "100vw",
         height: "100vh",
-        backgroundSize: "cover",
+        backgroundSize: "100vw 100vh",
         backgroundRepeat: "no-repeat",
         display: "flex",
         flexDirection: "column",
@@ -18,6 +19,7 @@ function Login(props){
     };
 
     function enterName(e){
+        localStorage.setItem('storedName',JSON.stringify(e.target.value));
         props.setter(e.target.value);
     }
 

@@ -93,7 +93,7 @@ function App() {
         backgroundImage: `url(${backgroundImageUrl})`,
         width: "100vw",
         height: "100vh",
-        backgroundSize: "cover",
+        backgroundSize: "100vw 100vh",
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center",
         display: "flexbox",
@@ -114,7 +114,15 @@ function App() {
         setSolsData(copy);
     }
 
-
+    const username = localStorage.getItem('storedName');
+    if (username && !name) {
+        try {
+            const parsedName = JSON.parse(username);
+            setName(parsedName);
+        } catch {
+            setName(username);
+        }
+    }
 
     if(!data) return(
         <h1>WORKING ON IT</h1>
@@ -133,8 +141,8 @@ function App() {
             </p>
             <p className="description-text">
                 InSight is taking daily weather measurements (temperature, <br/>
-                wind, pressure) on the surface of Mars at Elysium Panitia, a flat, <br/>
-                smooth plan near Mars' equator.
+                wind, pressure) on the surface of Mars at Elysium Planitia, a flat, <br/>
+                smooth plain near Mars' equator.
             </p>
             <Metrics sent={solsData[6]}/>
             <div className='card-container'>
